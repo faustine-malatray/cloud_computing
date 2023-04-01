@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tripmeal
+      service: web
+  template:
+    metadata:
+      labels:
+        app: tripmeal
+        service: web
+    spec:
+      containers:
+      - image: faustinemalatray/web:1.0
+        name: web
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+        env:
+        - "name": 'DATABASE_NAME'
+          "value": 'tripmealdb'
+        - "name": 'DATABASE_USER'
+          "value": 'root'
+        - "name": 'MYSQL_ROOT_PASSWORD'
+          "value": 'my-secret-pw'
+        - "name": 'DATABASE_HOST'
+          "value": 'db'
+        - "name": 'DATABASE_PORT'
+          "value": "3306"
+        - "name": 'TRIPMEAL_KEY'
+          "value": 'my-secret-key'
+        - "name": 'SERVER_PORT'
+          "value": "5000"

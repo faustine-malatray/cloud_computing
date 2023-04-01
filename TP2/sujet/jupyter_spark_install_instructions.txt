@@ -1,0 +1,66 @@
+# Installation de jupyter et spark avec Docker
+
+Ces instructions vous permettent d'installer une image docker contenant jupyter et hadoop-spark utiles pour les TD
+de MapReduce et le TP de Spark.
+
+## Prérequis
+
+### Docker 
+
+- Utilisez Docker comme recommandée dans le cours 
+
+## Image recommandée
+
+Télécharger l'image docker de Jupyter-PySpark avec la commande suivante:
+
+```
+docker pull jupyter/pyspark-notebook
+```
+
+Si vous avez un problème de permission il faut vous ajouter au groupe docker.
+
+Le téléchargement de l'image peut prendre plusieurs minutes en fonction de votre réseau.
+Cette image sera utilisée pour le TD de mapReduce ainsi que le TP de Spark.
+
+[Manage Docker as a non-root user](https://docs.docker.com/engine/install/linux-postinstall/)
+
+N'oubliez pas de lancer la commande suivante si vous ne relancez pas votre terminal:
+
+```
+newgrp docker 
+```
+
+## Lancer Jupyter 
+
+Dans un terminal lancez la commande suivante:
+
+```
+docker run -p 8888:8888 jupyter/pyspark-notebook:spark-3.1.1
+```
+
+et récupérez l'adresse affichée dans le terminal.
+
+- Example 
+
+```
+ Or copy and paste one of these URLs:
+        http://81b5cda5e5df:8888/?token=7e126e789bb1b3f03533d6fe6a1c290c08951a0c1727e83c
+     or http://127.0.0.1:8888/?token=7e126e789bb1b3f03533d6fe6a1c290c08951a0c1727e83c
+```
+
+Effectuez un **ctrl+left-click** sur l'adresse affichée dans le terminal 
+
+[http://127.0.0.1:8888/?token=7e126e789bb1b3f03533d6fe6a1c290c08951a0c1727e83c]
+
+Ou ouvrez votre navigateur à l'adresse :
+
+> htpp://localhost:8888
+
+et copier-collez le token affiché dans le terminal à la demande de Jupyter.
+
+## Importation des fichiers
+
+Importer les fichiers (mapReduce.ipynb, books.json, and numbers.txt) dans Jupyter à l'aide du bouton de téléchargement de l'interface de Jupyter.
+
+
+

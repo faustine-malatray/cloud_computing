@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db
+spec:
+  selector:
+    matchLabels:
+      app: tripmeal
+      service: db
+  serviceName: db
+  template:
+    metadata:
+      labels:
+        app: tripmeal
+        service: db
+    spec:
+      containers:
+      - image: faustinemalatray/db:1.0
+        name: db
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: tripmeal-data
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: my-secret-pw
+  volumeClaimTemplates:
+  - metadata:
+      name: tripmeal-data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 100Mi
